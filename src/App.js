@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import PokemonCard from "./components/PokemonCard";
 import "./App.css";
 import "./styles.css";
 
 export default function App() {
-  const pokemons = [
+  const [pokemons, setPokemons] = useState([
     {
       id: "448",
       name: "Lucario",
@@ -33,20 +33,22 @@ export default function App() {
       image:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/445.svg",
     },
-  ];
+  ]);
 
   return (
     <main className="app">
       <h1 className="app__title">Pokédex</h1>
       <ul className="app__pokemons">
-        <li>
-          <PokemonCard
-            id="448"
-            name="Lucario"
-            types="fighting, steel"
-            image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/448.svg"
-          />
-        </li>
+        {pokemons.map((pokemon) => (
+          <li key={pokemon.id}>
+            <PokemonCard
+              id={pokemon.id}
+              name={pokemon.name}
+              types={pokemon.types}
+              image={pokemon.image}
+            />
+          </li>
+        ))}
       </ul>
     </main>
   );
